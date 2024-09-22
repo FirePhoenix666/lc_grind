@@ -89,3 +89,9 @@ head = SLL.get()
 Solution().print_list(head)
 Solution().removeNthFromEnd(head, 1)
 Solution().print_list(head)
+
+# strategy 1: like above
+# strategy 2: two pointers
+# we can have first pointer (loop pointer or fast pointer) traverse thru the list
+# then the second slow pointer keep a distance that is n away
+# once the fast pointer reached final node, then the slow pointer will be at length -n which length -n+1 is the one to remove.   
