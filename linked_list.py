@@ -50,6 +50,13 @@ class LinkedList:
             print(current.value)
             current = current.next
 
+    def search(self, target):
+        current = self.head
+        while current is not None:
+            if current.value == target:
+                return True
+        return False
+
     def __str__(self) -> str:
         temp_node = self.head
         result = ""
