@@ -53,21 +53,40 @@ class Solution:
         elif current2 is None:
             return current1
         else:
-            while current2:
-                if current2.val <= current1.val:
+            # while current2:
+            #     if current2.val <= current1.val:
+            #         temp = current2
+            #         current2 = current2.next
+            #         temp.next = current1
+            #         current1 = temp
+            #     else:
+            #         pointer = current1
+            #         while pointer.next and current2.val > pointer.next.val:
+            #             pointer = pointer.next
+            #         temp = current2
+            #         temp.next = pointer.next
+            #         pointer.next = temp
+            #     current2 = current2.next
+
+            # this solution is shit because if we can assume current1 always larger than another then we can skip insert at the head
+            if current1.val > current2.val:
+                current2 = self.list1
+                current1 = self.list2
+            
+            output = current1
+
+            while current1 and current2:
+                if current1.next is None and current2:
+                    current1.next = current2
+                    break
+                if current1.next and current2.val<=current1.next.val:
                     temp = current2
-                    current2 = current2.next
-                    temp.next = current1
-                    current1 = temp
-                else:
-                    pointer = current1
-                    while pointer.next and current2.val > pointer.next.val:
-                        pointer = pointer.next
-                    temp = current2
-                    temp.next = pointer.next
-                    pointer.next = temp
-                current2 = current2.next
-        return current1
+                    current2=current2.next
+                    temp.next = current1.next
+                    current1.next = temp
+                current1 = current1.next
+
+        return output
 
 def print_list(node):
     while node:
